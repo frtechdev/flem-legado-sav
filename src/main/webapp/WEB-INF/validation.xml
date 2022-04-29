@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+    <global>
+
+    </global>
+
+    <formset>
+        
+        <form name="viagemComAgendamentoForm">
+            <field property="viagem.descricao" depends="required">
+                <msg resource="false" name="required" key="Informe a descrição." />
+            </field>
+            <field property="destino" depends="required">
+                <msg resource="false" name="required" key="Escolha o destino: BAHIA, BRASIL ou EXTERIOR." />
+            </field>
+            <field property="dataSaidaPrevista" depends="required">
+                <msg resource="false" name="required" key="Informe a data de saída prevista" />
+            </field>
+            <field property="dataRetornoPrevista" depends="required">
+                <msg resource="false" name="required" key="Informe a data de retorno prevista" />
+            </field>
+            <field property="horaSaidaPrevista" depends="required">
+                <msg resource="false" name="required" key="Informe a hora de saída prevista" />
+            </field>
+            <field property="horaRetornoPrevista" depends="required">
+                <msg resource="false" name="required" key="Informe a hora de retorno prevista" />
+            </field>
+            <field property="natureza" depends="required">
+                <msg resource="false" name="required" key="Informe a natureza da viagem" />
+            </field>
+            <field property="valorAdiantamento" depends="required">
+                <msg resource="false" name="required" key="Informe o valor de adiantamento" />
+            </field>
+        </form>
+
+        <form name="viagemForm">
+            <field property="viagem.codigoCentroCusto" depends="required">
+                <msg resource="false" name="required" key="Informe o código do centro de custo." />
+            </field>
+            <field property="viagem.codigoCentroResponsabilidade" depends="required">
+                <msg resource="false" name="required" key="Informe o código do centro de responsabilidade." />
+            </field>
+            <field property="viagem.descricao" depends="required">
+                <msg resource="false" name="required" key="Informe a descrição." />
+            </field>
+            <field property="destino" depends="required">
+                <msg resource="false" name="required" key="Escolha o destino: BAHIA, BRASIL ou EXTERIOR." />
+            </field>
+            <field property="dataSaidaPrevista" depends="required">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+            <field property="dataRetornoPrevista" depends="required">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+            <field property="horaSaidaPrevista" depends="required">
+                <msg resource="false" name="required" key="Informe a hora de saída prevista." />
+            </field>
+            <field property="horaRetornoPrevista" depends="required">
+                <msg resource="false" name="required" key="Informe a hora de retorno prevista." />
+            </field>
+            <field property="natureza" depends="required">
+                <msg resource="false" name="required" key="Informe a natureza da viagem." />
+            </field>
+            <field property="tipoDiaria" depends="required">
+                <msg resource="false" name="required" key="Informe o tipo da diária." />
+            </field>
+            <field property="dataSaidaPrevista" depends="date" page="1">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+            <field property="dataRetornoPrevista" depends="date" page="1">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+            <field property="dataPagamento" depends="required,date" page="2">
+                <msg resource="false" name="required" key="Informe a data de pagamento." />
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+        </form>
+
+        <form name="consultaForm">
+
+            <field property="dataSaidaPrevista" depends="date">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+            <field property="dataRetornoPrevista" depends="date">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+
+        </form>
+
+
+        <form name="prestacaoContasForm">
+            <field property="dataSaidaEfetiva" depends="required">
+                <msg resource="false" name="required" key="Informe a data de saída efetiva." />
+            </field>
+            <field property="horaSaidaEfetiva" depends="required">
+                <msg resource="false" name="required" key="Informe a hora de saida efetiva." />
+            </field>
+            <field property="dataRetornoEfetiva" depends="required">
+                <msg resource="false" name="required" key="Informe a data de retorno efetiva." />
+            </field>
+            <field property="horaRetornoEfetiva" depends="required">
+                <msg resource="false" name="required" key="Informe a hora de retorno efetiva." />
+            </field>
+            <field property="dataPagamento" depends="required,date" page="2">
+                <msg resource="false" name="required" key="Informe a data de pagamento." />
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+        </form>
+        
+        <form name="companhiaForm">
+            <field property="companhia.nome" depends="required">
+                <msg resource="false" name="required" key="Informe o nome." />
+            </field>
+            <field property="companhia.descricao" depends="required">
+                <msg resource="false" name="required" key="Informe a descrição." />
+            </field>
+        </form>
+
+        <form name="cargoDiariaForm">
+            <field property="cargoDiaria.cargoNome" depends="required">
+                <msg resource="false" name="required" key="Selecione o Cargo." />
+            </field>
+            <field property="cargoDiaria.descricao" depends="required">
+                <msg resource="false" name="required" key="Informe a Descrição." />
+            </field>
+            <field property="cargoDiaria.valorBahia" depends="required">
+                <msg resource="false" name="required" key="Informe o Valor da Diária na Bahia." />
+            </field>
+            <field property="cargoDiaria.valorBrasil" depends="required">
+                <msg resource="false" name="required" key="Informe o Valor da Diária em outros Estados do Brasil." />
+            </field>
+            <field property="cargoDiaria.valorExterior" depends="required">
+                <msg resource="false" name="required" key="Informe o Valor da Diária no Exterior." />
+            </field>
+        </form>
+
+        <form name="liberacaoViagemForm">
+            <field property="liberacaoViagem.codigoDominioUsuarioViajante" depends="required">
+                <msg resource="false" name="required" key="Informe o viajante" />
+            </field>
+            <field property="liberacaoViagem.descricao" depends="required">
+                <msg resource="false" name="required" key="Informe a descrição" />
+            </field>
+        </form>
+
+        <form name="contaCorrenteViagemForm">
+            <field property="contaCorrenteViagem.codigoDominioFuncionarioViajante" depends="required">
+                <msg resource="false" name="required" key="Selecione o Funcionário" />
+            </field>
+            <field property="banco.codigo" depends="required, mask">
+                <msg resource="false" name="required" key="Informe o banco." />
+                <msg resource="false" name="mask" key="Somente digitos no campo banco"/>
+                <var>
+                    <var-name>mask</var-name>
+                    <var-value>^[0-9]*$</var-value>
+                </var>
+            </field>
+            <field property="contaCorrenteViagem.agencia" depends="required">
+                <msg resource="false" name="required" key="Informe a agência." />
+            </field>
+            <field property="contaCorrenteViagem.conta" depends="required">
+                <msg resource="false" name="required" key="Informe a conta." />
+            </field>
+        </form>
+
+        <form name="bancoForm">
+            <field property="banco.codigo" depends="required">
+                <msg resource="false" name="required" key="Informe o Código" />
+            </field>
+            <field property="banco.nome" depends="required">
+                <msg resource="false" name="required" key="Informe o Nome." />
+            </field>
+        </form>
+
+        <form name="tipoGastoForm">
+            <field property="tipoGasto.descricao" depends="required">
+                <msg resource="false" name="required" key="Informe a descrição" />
+            </field>
+            <field property="tipoGasto.ativo" depends="required">
+                <msg resource="false" name="required" key="Selecione o status" />
+            </field>
+        </form>
+        <form name="cidadeForm">
+            <field property="cidade.nome" depends="required">
+                <msg resource="false" name="required" key="Informe o nome da cidade" />
+            </field>
+            <field property="cidade.pais.id" depends="required">
+                <msg resource="false" name="required" key="Selecione o país" />
+            </field>
+        </form>
+        
+        <form name="relatorioForm">
+            <field property="dataInicial" depends="date" page="1">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+            <field property="dataFinal" depends="date" page="1">
+                <msg resource="false" name="date" key="Data inválida." />
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>dd/MM/yyyy</var-value>
+                </var>
+            </field>
+            <field property="codigoCentroCustoInicial" depends="required" page="1">
+                <msg resource="false" name="required" key="Selecione o centro de custo inicial" />
+            </field>
+            <field property="codigoCentroCustoFinal" depends="required" page="1">
+                <msg resource="false" name="required" key="Selecione o centro de custo final" />
+            </field>
+            
+            
+            <field property="codigoCentroCustoInicial" depends="required" page="2">
+                <msg resource="false" name="required" key="Selecione o centro de custo inicial" />
+            </field>
+            <field property="codigoCentroCustoFinal" depends="required" page="2">
+                <msg resource="false" name="required" key="Selecione o centro de custo final" />
+            </field>
+            
+            
+            <field property="codigoCentroCustoInicial" depends="required" page="3">
+                <msg resource="false" name="required" key="Selecione o centro de custo inicial" />
+            </field>
+            <field property="codigoCentroCustoFinal" depends="required" page="3">
+                <msg resource="false" name="required" key="Selecione o centro de custo final" />
+            </field>
+            <field property="mesAno" depends="required" page="3">
+                <msg resource="false" name="required" key="Informe a data." />
+            </field>
+            
+            
+            <field property="dataInicial" depends="required" page="4">
+                <msg resource="false" name="required" key="Selecione a data inicial" />
+            </field>
+            <field property="dataFinal" depends="required" page="4">
+                <msg resource="false" name="required" key="Selecione a data final" />
+            </field>
+            <field property="codigoCentroCustoInicial" depends="required" page="4">
+                <msg resource="false" name="required" key="Selecione o centro de custo inicial" />
+            </field>
+            <field property="codigoCentroCustoFinal" depends="required" page="4">
+                <msg resource="false" name="required" key="Selecione o centro de custo final" />
+            </field>
+            <field property="situacaoFuncionario" depends="required" page="4">
+                <msg resource="false" name="required" key="Selecione a situação do Funcionário" />
+            </field>
+            
+            
+            <field property="codigoCentroCustoInicial" depends="required" page="5">
+                <msg resource="false" name="required" key="Selecione o centro de custo inicial" />
+            </field>
+            <field property="codigoCentroCustoFinal" depends="required" page="5">
+                <msg resource="false" name="required" key="Selecione o centro de custo final" />
+            </field>
+            <field property="tiposGastos" depends="required" page="5">
+                <msg resource="false" name="required" key="Selecione pelo menos um tipo de gasto" />
+            </field>
+            
+            
+            <field property="dataInicial" depends="required" page="6">
+                <msg resource="false" name="required" key="Selecione a data inicial" />
+            </field>
+            <field property="dataFinal" depends="required" page="6">
+                <msg resource="false" name="required" key="Selecione a data final" />
+            </field>
+            <field property="codigoCentroCustoInicial" depends="required" page="6">
+                <msg resource="false" name="required" key="Selecione o centro de custo inicial" />
+            </field>
+            <field property="codigoCentroCustoFinal" depends="required" page="6">
+                <msg resource="false" name="required" key="Selecione o centro de custo final" />
+            </field>
+        </form>
+        
+        <form name="percentualDiariaForm">
+            <field property="minQuebraDiariasUm" depends="required">
+                <msg resource="false" name="required" key="Informe o valor inicial da primeira faixa" />
+            </field>
+            <field property="maxQuebraDiariasUm" depends="required">
+                <msg resource="false" name="required" key="Informe o valor final da primeira faixa" />
+            </field>
+            <field property="quebraDiariasUm" depends="required">
+                <msg resource="false" name="required" key="Informe o percentual da primeira faixa" />
+            </field>
+            <field property="minQuebraDiariasDois" depends="required">
+                <msg resource="false" name="required" key="Informe o valor inicial da segunda faixa" />
+            </field>
+            <field property="maxQuebraDiariasDois" depends="required">
+                <msg resource="false" name="required" key="Informe o valor final da segunda faixa" />
+            </field>
+            <field property="quebraDiariasDois" depends="required">
+                <msg resource="false" name="required" key="Informe o percentual da segunda faixa" />
+            </field>
+            <field property="percentualDiaria.departamentoDominio" depends="required">
+                <msg resource="false" name="required" key="Informe o Departamento" />
+            </field>
+        </form>
+        
+    </formset>
+
+</form-validation>

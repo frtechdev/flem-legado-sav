@@ -1,0 +1,455 @@
+package br.org.flem.sav.dwr;
+
+import br.org.flem.fw.persistencia.dao.legado.gem.CentroCustoDAO;
+import br.org.flem.fw.persistencia.dao.legado.gem.EntidadeDAO;
+import br.org.flem.fw.persistencia.dto.Cargo;
+import br.org.flem.fw.persistencia.dto.Usuario;
+import br.org.flem.fw.service.CentroResponsabilidade;
+import br.org.flem.fw.service.IColaborador;
+import br.org.flem.fw.service.IFuncionario;
+import br.org.flem.fw.service.INivel;
+import br.org.flem.fw.service.impl.RHServico;
+import br.org.flem.fwe.exception.AcessoDadosException;
+import br.org.flem.fwe.exception.AplicacaoException;
+import br.org.flem.fwe.util.Data;
+import br.org.flem.fwe.util.Valores;
+import br.org.flem.sav.bo.CargoDiariaBO;
+import br.org.flem.sav.bo.CidadeBO;
+import br.org.flem.sav.bo.ContaCorrenteViagemBO;
+import br.org.flem.sav.bo.SolicitarViagemBO;
+import br.org.flem.sav.bo.UsuarioBO;
+import br.org.flem.sav.bo.ViagemBO;
+import br.org.flem.sav.bo.ViagemComAgendamentoBO;
+import br.org.flem.sav.dao.EstadoDAO;
+import br.org.flem.sav.dto.RecebimentoViagemDTO;
+import br.org.flem.sav.negocio.CargoDiaria;
+import br.org.flem.sav.negocio.ContaCorrenteViagem;
+import br.org.flem.sav.negocio.DestinoViagem;
+import br.org.flem.sav.negocio.ItemItinerario;
+import br.org.flem.sav.negocio.Viagem;
+import br.org.flem.sav.negocio.ViagemComAgendamento;
+import br.org.flem.sav.negocio.util.Cidade;
+import br.org.flem.sav.negocio.util.Diarias;
+import br.org.flem.sav.negocio.util.Estado;
+import br.org.flem.sav.negocio.util.Pais;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.validator.GenericValidator;
+import org.directwebremoting.annotations.RemoteMethod;
+import org.directwebremoting.annotations.RemoteProxy;
+
+/**
+ *
+ * Classe com as funções utilizadas pelo DWR, nos JSP.
+ *
+ * @author mccosta
+ */
+@RemoteProxy
+public class Funcoes {
+
+    @RemoteMethod
+    public Double obterDiaria(String referencia, String destino) {
+        Double diaria = 0.0;
+        CargoDiaria cargoDiaria = null;
+
+        try {
+            if (referencia.equals("Consultor")) {
+                cargoDiaria = new CargoDiariaBO().obterCargoDiariaConsultor();
+            } else {
+                if (GenericValidator.isInt(referencia)) {
+                    IFuncionario iFunc = new RHServico().obterFuncionarioPorMatricula(Integer.valueOf(referencia));
+                    cargoDiaria = new CargoDiariaBO().obterPorCodigo(iFunc.getCargo().getId());
+                }
+            }
+            if (cargoDiaria != null) {
+                if (DestinoViagem.valueOf(destino).equals(DestinoViagem.BAHIA)) {
+                    diaria = cargoDiaria.getValorBahia();
+                } else if (DestinoViagem.valueOf(destino).equals(DestinoViagem.BRASIL)) {
+                    diaria = cargoDiaria.getValorBrasil();
+                } else {
+                    diaria = cargoDiaria.getValorExterior();
+                }
+            }
+
+
+        } catch (AplicacaoException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return diaria;
+    }
+
+    @RemoteMethod
+    public String obterCargo(String codigoCargo) {
+        String dadosCargo = "";
+
+        if (GenericValidator.isLong(codigoCargo)) {
+            Cargo cargo = (Cargo) new RHServico().obterCargoById(Integer.valueOf(codigoCargo));
+            dadosCargo = cargo.getId() + ";" + cargo.getNome();
+        }
+
+        return dadosCargo;
+    }
+
+    @RemoteMethod
+    public Boolean verificarDiarias(String matriculaUsuario, String dataSaidaPrevista, String horaSaidaPrevista, String dataRetornoPrevista, String horaRetornoPrevista, String qtdeDiaria, String vlDiaria, String idViagem, String destino, String tipoDiaria, String totalDiariasSomadas) {
+        Boolean retorno = false;
+        Diarias diarias = new Diarias();
+        DestinoViagem destinoViagem = DestinoViagem.valueOf(destino);
+
+        if (idViagem.equals("")) {
+            idViagem = "0";
+        }
+        
+        if ((GenericValidator.isDate(dataSaidaPrevista, "dd/MM/yyyy", false))
+                && (GenericValidator.isInt(idViagem))) {
+            try {
+                Date dataSaida = new SimpleDateFormat("dd/MM/yyyy").parse(dataSaidaPrevista);
+
+                Double valorDiaria = Valores.desformataValor(vlDiaria);
+                //int qtdeDiariaViagem = StringUtil.formatarStringParaInteiro(qtdeDiaria);
+                double qtdeDiariaViagem = Valores.desformataValor(qtdeDiaria);
+                double totalDiariasSomadasDouble = Valores.desformataValor(totalDiariasSomadas);
+                
+                if (diarias.verificar(Integer.valueOf(matriculaUsuario), dataSaida, destinoViagem, qtdeDiariaViagem, valorDiaria, Integer.valueOf(idViagem), tipoDiaria, totalDiariasSomadasDouble)) {
+                    if (tipoDiaria.equals("2")) {
+                        retorno = true;
+                    } else {
+                        dataSaida = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dataSaidaPrevista + " " + horaSaidaPrevista);
+                        Date dataRetorno = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dataRetornoPrevista + " " + horaRetornoPrevista);
+                        IFuncionario viajante = new RHServico().obterFuncionarioPorMatricula(Integer.valueOf(matriculaUsuario));
+
+                        retorno = diarias.verificar(viajante, dataSaida, dataRetorno, valorDiaria, Integer.valueOf(idViagem), null);
+                    }
+                }
+
+
+            } catch (Exception ex) {
+                Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return retorno;
+    }
+
+    @RemoteMethod
+    public String verificarPeriodo(Integer id_viagem, Integer matriculaV, String codigoV, String dataSaidaPrevista, String horaSaidaPrevista, String dataRetornoPrevista, String horaRetornoPrevista) throws AplicacaoException, ParseException {
+
+        Viagem v = new Viagem();
+        SimpleDateFormat simpleDate = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        v.setDataSaidaPrevista(simpleDate.parse(dataSaidaPrevista + " " + horaSaidaPrevista));
+        v.setDataRetornoPrevista(simpleDate.parse(dataRetornoPrevista + " " + horaRetornoPrevista));
+
+        if (matriculaV > 0) {
+            v.setCodigoDominioUsuarioViajante(matriculaV);
+        }
+        if (!codigoV.equals("0")) {
+            v.setCodigoConsultorViajante(codigoV);
+        }
+        if (id_viagem > 0) {
+            v.setId(id_viagem);
+        }
+
+        if (new ViagemBO().obterTodosPorPeriodo(v).size() > 0) {
+            return "false";
+        }
+        return "true";
+    }
+
+    @RemoteMethod
+    public String obterCidades(String id, String name) {
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            Collection<Cidade> cidadeList = new ArrayList<Cidade>();
+
+            switch (Integer.valueOf(id)) {
+                case 0:
+                    cidadeList = new CidadeBO().obterBahia();
+                    break;
+                case 1:
+                    cidadeList = new CidadeBO().obterBrasil();
+                    break;
+                case 2:
+                    cidadeList = new CidadeBO().obterExterior();
+                    break;
+                default:
+                    cidadeList = new CidadeBO().obterBahia();
+                    break;
+            }
+
+            sb.append("\n<select name='").append(name).append("' id='").append(name).append("' value='' style='width: 210px;' >");
+            sb.append("\n<option value=''>-- Selecione --</option>");
+            for (Cidade cidade : cidadeList) {
+                sb.append("\n<option value='").append(cidade.getId()).append("'>").append(cidade.getNome()).append("</option>");
+            }
+            sb.append("\n</select>");
+
+        } catch (AplicacaoException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sb.toString();
+    }
+
+    @RemoteMethod
+    public String obterCidadesPorDestino(String nome, String nameTag) {
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            Collection<Cidade> cidadeList = new ArrayList<Cidade>();
+
+            cidadeList = new CidadeBO().obterPorDestino(nome);
+
+            sb.append("\n<select name='").append(nameTag).append("' id='").append(nameTag).append("' style='width: 210px;' >");
+            sb.append("\n<option value=''>-- Selecione --</option>");
+            for (Cidade cidade : cidadeList) {
+                if (nome.equals(DestinoViagem.EXTERIOR.toString())) {
+                    if (cidade.getPais() != null && cidade.getPais().getSigla() != null && !cidade.getPais().getSigla().isEmpty()) {
+                        sb.append("\n<option value='").append(cidade.getId()).append("'>").append(cidade.getNome()).append(" / ").append(cidade.getPais().getSigla()).append("</option>");
+                    } else {
+                        if (cidade.getEstado() != null) {
+                            sb.append("\n<option value='").append(cidade.getId()).append("'>").append(cidade.getNome()).append(" / ").append(cidade.getEstado().getSigla()).append("</option>");
+                        } else {
+                            sb.append("\n<option value='").append(cidade.getId()).append("'>").append(cidade.getNome()).append("</option>");
+                        }
+                    }
+
+                } else {
+                    if (cidade.getEstado() != null) {
+                        sb.append("\n<option value='").append(cidade.getId()).append("'>").append(cidade.getNome()).append(" / ").append(cidade.getEstado().getSigla()).append("</option>");
+                    } else {
+                        sb.append("\n<option value='").append(cidade.getId()).append("'>").append(cidade.getNome()).append("</option>");
+                    }
+                }
+            }
+            sb.append("\n</select>");
+
+        } catch (AplicacaoException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sb.toString();
+    }
+
+    @RemoteMethod
+    public String obterDadosFuncionario(String matricula) {
+        StringBuilder sb = new StringBuilder();
+        try {
+
+            IFuncionario iFunc = new RHServico().obterFuncionarioPorMatricula(Integer.valueOf(matricula));
+            ContaCorrenteViagem ccv = new ContaCorrenteViagemBO().obterPorMatriculaFuncionario(matricula);
+
+            sb.append("<tr><td width='450' colspan='3'><strong>Departamento:</strong> ").append(iFunc.getDepartamento().getNome()).append("</td></tr>");
+            sb.append("<tr><td width='450' colspan='3'><strong>Cargo:</strong> ").append(iFunc.getCargo().getNome()).append("</td></tr>");
+            sb.append("<tr>");
+            if (ccv != null) {
+                sb.append("<td width='150'><strong>Banco:</strong><br><input type='text' name='viagem.banco' value='").append(ccv.getBanco()).append("' style='border-style:none;'/></td>");
+                sb.append("<td width='150'><strong>Agência:</strong><br><input type='text' name='viagem.agencia' value='").append(ccv.getAgencia()).append("' style='border-style:none;'/></td>");
+                sb.append("<td width='150'><strong>Conta Corrente:</strong><br><input type='text' name='viagem.conta' value='").append(ccv.getConta()).append("' style='border-style:none;'/></td>");
+
+            } else {
+                sb.append("<td width='150'><strong>Banco:</strong><br><input type='text' name='viagem.banco' value='").append(iFunc.getBanco()).append("' style='border-style:none;'/></td>");
+                sb.append("<td width='150'><strong>Agência:</strong><br><input type='text' name='viagem.agencia' value='").append(iFunc.getAgencia()).append("' style='border-style:none;'/></td>");
+                sb.append("<td width='150'><strong>Conta Corrente:</strong><br><input type='text' name='viagem.conta' value='").append(iFunc.getConta()).append("' style='border-style:none;'/></td>");
+            }
+            sb.append("</tr>");
+
+        } catch (AplicacaoException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sb.toString();
+    }
+
+    @RemoteMethod
+    public String obterDadosConsultor(String codigo) {
+        StringBuilder sb = new StringBuilder();
+
+        IColaborador consultor = new EntidadeDAO().obterConsultorPorCodigo(codigo);
+
+        sb.append("<tr><td><strong>Banco:</strong><input type='text' name='viagem.banco' value=").append(consultor.getBanco()).append(" style='border-style:none;'/></td>");
+        sb.append("<td><strong>Agência:</strong><input type='text' name='viagem.agencia' value=").append(consultor.getAgencia()).append(" style='border-style:none;'/></td>");
+        sb.append("<td><strong>Conta Corrente:</strong><input type='text' name='viagem.conta' value=").append(consultor.getConta()).append(" style='border-style:none;'/></td>");
+
+        return sb.toString();
+    }
+
+    @RemoteMethod
+    public String obterIntinerarioViagem(String idViagem) {
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            ViagemComAgendamento viagem = new ViagemComAgendamentoBO().obterPorPk(Integer.parseInt(idViagem));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+            for (ItemItinerario it : viagem.getItinerario().getItensItinerario()) {
+                sb.append("<tr>");
+                sb.append("<td><input size='8' readonly value='").append(sdf.format(it.getData())).append("'</td>");
+                sb.append("<td><input readonly value='").append(it.getOrigem().getNome()).append("'</td>");
+                sb.append("<td><input readonly value='").append(it.getDestino().getNome()).append("'</td>");
+                sb.append("<td><input size='22' readonly value='").append(it.getObservacoes()).append("'</td>");
+            }
+
+            sb.append("</tr>");
+
+        } catch (AplicacaoException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return sb.toString();
+    }
+
+    @RemoteMethod
+    public String funcionarioPodeViajar(String matricula) {
+        Usuario usuario = (Usuario) new UsuarioBO().obterPorCodigoDominio(Integer.valueOf(matricula));
+        ArrayList<String> resposta  = new SolicitarViagemBO().funcionarioPodeViajar(usuario);
+
+        return resposta.get(0) + ";" + resposta.get(1);
+    }
+
+    @RemoteMethod
+    public Double calculaPorcentagemViagensSalario(String matricula) {
+        IFuncionario func = null;
+        Double porcentagem = 0D;
+        try {
+            RHServico rh = new RHServico();
+            func = rh.obterFuncionarioPorMatricula(Integer.valueOf(matricula));
+            porcentagem = new Diarias().calcularPorcentagem(func);
+        } catch (Exception ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return porcentagem;
+    }
+
+    @RemoteMethod
+    public Double obterSalario(String matricula) {
+        RHServico rh = new RHServico();
+        IFuncionario func = rh.obterFuncionarioPorMatricula(Integer.valueOf(matricula));
+        return rh.obterSalarioPorFuncionario(func);
+    }
+
+    @RemoteMethod
+    public Collection<CentroResponsabilidade> obterCentroResponsabilidadePorCc(String cc) {
+        Collection<CentroResponsabilidade> lista = new ArrayList<CentroResponsabilidade>();
+        CentroCustoDAO custoDAO = new CentroCustoDAO();
+        CentroResponsabilidade centroResponsabilidade;
+
+        try {
+            //CÓDIGO NOVO, JÁ INTEGFRADO COM O SAP.
+
+            centroResponsabilidade = custoDAO.obterObjCentroResponsabilidadePorCc(cc);
+            if (centroResponsabilidade != null && centroResponsabilidade.getId() != null) {
+                lista.add(centroResponsabilidade);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista;
+    }
+
+    @RemoteMethod
+    public Collection<Estado> obterEstadosPorPais(String id) {
+        Collection<Estado> estados = new ArrayList<Estado>();
+        if (GenericValidator.isInt(id)) {
+            Pais pais = new Pais();
+            pais.setId(Long.valueOf(id));
+            try {
+                estados = new EstadoDAO().obterPorPais(pais);
+            } catch (AcessoDadosException ex) {
+                ex.printStackTrace();
+                Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return estados;
+    }
+
+    @RemoteMethod
+    public Boolean verificarDiariasTrecho(String idViagem, String matriculaViajante, String[] datasSaida, String[] datasRetorno, String[] valorDiariaTrecho) {
+        Diarias diarias = new Diarias();
+        Boolean retorno = false;
+        Map<Integer, Double> map = new HashMap<Integer, Double>();
+
+        try {
+            if (datasSaida.length > 0) {
+                IFuncionario viajante = new RHServico().obterFuncionarioPorMatricula(Integer.valueOf(matriculaViajante));
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                Date dataS = null;
+                Date dataR = null;
+                int i = 0;
+
+                for (i = 0; i < datasSaida.length - 1; i++) {
+                    dataS = new Date(format.parse(datasSaida[i]).getTime());
+                    dataR = new Date(format.parse(datasRetorno[i]).getTime());
+
+                    //Faz o calculo do periodo(trecho) selecionado na viagem que deseja adicionar
+                    diarias.separarDiariaPorMesAno(dataS, dataR, Double.valueOf(valorDiariaTrecho[i]), map, viajante.getCodigoDominio());
+                }
+                dataS = new Date(format.parse(datasSaida[i]).getTime());
+                dataR = new Date(format.parse(datasRetorno[i]).getTime());
+
+                retorno = diarias.verificar(viajante, dataS, dataR, Double.valueOf(valorDiariaTrecho[i]), Integer.valueOf(idViagem), map);
+
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AplicacaoException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+
+    @RemoteMethod
+    public Boolean verificarDataAtualIgualOuSuperiorDataRetorno(String data, String hora) {
+        boolean retorno = false;
+        Date hoje = new Date();
+        try {
+            Date dataRetorno = Data.formataData(data+" "+hora, "dd/MM/yyyy HH:mm");
+            if (dataRetorno.before(hoje)|| dataRetorno.equals(hoje)) {
+                retorno = true;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+
+    @RemoteMethod
+    public RecebimentoViagemDTO verificarCentroCustoFonteDeRecurso(String[] ids, String codigoFonte) {
+        RecebimentoViagemDTO recebimentoViagemDTO = new RecebimentoViagemDTO();
+        try {
+            Collection<Integer> idsViagens = new ArrayList<Integer>();
+            for (String id : ids) {
+                if (GenericValidator.isInt(id)) {
+                    idsViagens.add(Integer.valueOf(id));
+                }
+            }
+            ViagemBO viagemBO = new ViagemBO();
+            Collection<Viagem> viagens = viagemBO.obterViagensPorIds(idsViagens);
+
+            StringBuilder mensagem = new StringBuilder();
+            mensagem.append("A fonte de recurso ").append(codigoFonte).append(" não pode pagar as viagens: \n");
+            for (Viagem viagem : viagens) {
+                if (!viagemBO.verificarCentroCustoFonteDeRecurso(viagem, codigoFonte)) {
+                    recebimentoViagemDTO.setValido(false);
+                    mensagem.append(viagem.getId()).append(" com centro de custo ").append(viagem.getCodigoCentroCusto()).append("\n");
+                }
+            }
+            recebimentoViagemDTO.setMensagens(mensagem.toString());
+
+        } catch (AplicacaoException ex) {
+            Logger.getLogger(Funcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return recebimentoViagemDTO;
+    }
+}

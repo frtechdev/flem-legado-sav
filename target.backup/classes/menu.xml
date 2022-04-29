@@ -1,0 +1,45 @@
+<?xml version="1.0"?> 
+<!DOCTYPE grupo SYSTEM "padrao.dtd">
+<grupo nome="Menu">
+    
+    <menu nome="Administração">
+        <item nome="Companhia de Viagem" perfil="admCompViagem" href="Companhia.do"/>
+        <item nome="Gerenciar Diária" perfil="admGerDiaria" href="CargoDiaria.do"/>
+        <item nome="Liberação de Viagem" perfil="admLiberViagem" href="LiberacaoViagem.do"/>
+        <item nome="Liberação de Viagem Retroativo" perfil="admLiberViagemR" href="LiberacaoViagem.do?metodo=listaRetroativo"/>
+        <item nome="Liberação de Viagem Limite 50" perfil="admLiberViagemL50" href="LiberacaoViagem.do?metodo=listaLimite50"/>
+        <item nome="Cadastro de Banco" perfil="admBanco" href="Banco.do"/>
+        <item nome="Cadastro de Percentual Diária" perfil="admPercentualDiaria" href="PercentualDiaria.do"/>
+        <item nome="Cadastro Contas Corrente" perfil="admCadCc" href="ContaCorrenteViagem.do"/>
+        <item nome="Cadastro Tipos de Gastos" perfil="admTipoGasto" href="TipoGasto.do"/>
+        <item nome="Cadastro de Cidade" perfil="admCidade" href="Cidade.do"/>
+    </menu>
+
+    <menu nome="Consultas">
+        <item nome="Consultar Viagens" perfil="consulViagem" href="ConsultaViagem.do"/>
+        <item nome="Consultar Situação Funcionário" perfil="consulDiaria" href="ConsultaDiaria.do"/>
+    </menu>
+    
+    <menu nome="Solicitação de Viagem">
+        <item nome="Viagem para Funcionário" perfil="solicViagFuncionario" href="Viagem.do"/>
+        <item nome="Viagem para Consultor" perfil="solicViagConsultor" href="ViagemConsultor.do"/>
+        <item nome="Receber Solicitação de Viagem" perfil="solicRecbSolicViagem" href="Viagem.do?metodo=listaRecebimento"/>
+        <item nome="Receber Prestação de Conta" perfil="solicRecbPrestConta" href="PrestacaoContas.do?metodo=listaRecebimento"/>
+        <item nome="Funcionários inativos com prestação pendentes" perfil="prestFuncInativos" href="FuncionariosInativos.do"/>
+    </menu>
+    <menu nome="Agendamento Projeto">
+        <item nome="Agendar Viagem Projeto" perfil="agendViagFuncionario" href="ViagemComAgendamento.do" />
+        <item nome="Aprovar Agendamento de Viagem" perfil="agendAprovAgendViagem" href="ViagemComAgendamento.do?metodo=listaRecebimento"/>
+    </menu>
+     <menu nome="Relatório">
+        <item nome="Qtd. prest. de contas em aberto" perfil="relQtdPresContAberto" href="Relatorio.do?metodo=filtroTotalPrestaoContasEmAberto" />
+        <item nome="Qtd. SDV por status" perfil="relTotalSdvStatus" href="Relatorio.do?metodo=filtroTotalSDVStatus"/>
+        <item nome="Relatório Funcionário x Diária" perfil="relFuncionarioDiaria" href="Relatorio.do?metodo=filtroFuncionarioDiarias"/>
+        <item nome="Relatório Funcionário x Diária Detalhada" perfil="relFuncionarioDiariaDetalhada" href="Relatorio.do?metodo=filtroFuncionarioDiariasDetalhada"/>
+        <item nome="Relatório de Viagens Realizadas" perfil="relViagensRealizadas" href="Relatorio.do?metodo=filtroRelatorioConferenciaViagens"/>
+        <item nome="Relatório de gastos" perfil="relGastos" href="Relatorio.do?metodo=filtroRelatorioGastos"/>
+        <item nome="Planilha de gastos" perfil="relGastos" href="Relatorio.do?metodo=filtroRelatorioPlanilhaGastos"/>
+        <item nome="Rel. Analítico de Prestação de contas Pendente" perfil="relPrestacaoFin" href="Relatorio.do?metodo=filtroRelatorioAnaliticoPrestacaoPendente" />
+		<item nome="Relatório Diária x Salário" perfil="relDiSal" href="Relatorio.do"/>
+    </menu>
+</grupo>

@@ -1,0 +1,145 @@
+.tabelaDisplay { 
+    font-size:10pt;
+    border: 1px solid #666;
+    width: 100%;
+    margin: 20px 0 20px 0 !important;
+}
+
+.tabelaDisplay th,td {
+    padding: 2px 4px 2px 4px !important;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tabelaDisplay thead tr {
+    background-color: #29426D;
+    color: #FFFFFF;
+}
+
+.tabelaDisplay th.sorted {
+    background-color: #A0B1C7;
+}
+
+.tabelaDisplay th.sorted a {
+    color: #000000;
+}
+
+.tabelaDisplay th a,th a:visited {
+    color: black;
+}
+
+.tabelaDisplay th a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+.tabelaDisplay th.sorted a,th.sortable a {
+    background-position: right;
+    display: block;
+    width: 100%;
+    color: #000000;
+}
+
+.tabelaDisplay th.sortable a {
+    background-repeat: no-repeat;
+    background-image: url(../img/arrow_off.png);
+}
+
+.tabelaDisplay th.order1 a {
+    background-repeat: no-repeat;
+    background-image: url(../img/arrow_down.png);
+}
+
+.tabelaDisplay th.order2 a {
+    background-repeat: no-repeat;
+    background-image: url(../img/arrow_up.png);
+}
+
+.tabelaDisplay tr.odd {
+    background-color: #FFFFFF;
+    font-size: 8pt;
+}
+
+.tabelaDisplay tr.tableRowEven,tr.even {
+    background-color: #AACCFF;
+    font-size: 8pt;
+}
+
+.tabelaDisplay div.exportlinks {
+    background-color: #eee;
+    border: 1px dotted #999;
+    padding: 2px 4px 2px 4px;
+    margin: 2px 0 10px 0;
+    width: 98%;
+}
+
+.tabelaDisplay span.export {
+    padding: 0 4px 1px 20px;
+    display: inline;
+    cursor: pointer;
+}
+
+.tabelaDisplay span.excel {
+    background-repeat: no-repeat;
+    background-image: url(../img/ico_file_excel.png);
+}
+
+.tabelaDisplay span.csv {
+    background-repeat: no-repeat;
+    background-image: url(../img/ico_file_csv.png);
+}
+
+.tabelaDisplay span.xml {
+    background-repeat: no-repeat;
+    background-image: url(../img/ico_file_xml.png);
+}
+
+.tabelaDisplay span.pdf {
+    background-repeat: no-repeat;
+    background-image: url(../img/ico_file_pdf.png);
+}
+
+.tabelaDisplay span.rtf {
+    background-repeat: no-repeat;
+    background-image: url(../img/ico_file_rtf.png);
+}
+
+.tabelaDisplay span.pagebanner {
+    background-color: #eee;
+    border: 1px dotted #999;
+    padding: 2px 4px 2px 4px;
+    width: 98%;
+    margin-top: 10px;
+    display: block;
+    border-bottom: none;
+}
+
+.tabelaDisplay span.pagelinks {
+    background-color: #eee;
+    border: 1px dotted #999;
+    padding: 2px 4px 2px 4px;
+    width: 98%;
+    display: block;
+    border-top: none;
+    margin-bottom: -5px;
+}
+
+span.pagebanner {
+    font-size:10pt;
+    color:#003377;
+}
+
+.pagelinks a{
+    font-size:10pt;
+    color:#0066AA;
+}
+
+.pagelinks {
+    font-size:10pt;
+    
+}
+
+.tabelaDisplay span.lixo {
+    background-repeat: no-repeat;
+    background-image: url(../img/ico_deletar.png);
+}

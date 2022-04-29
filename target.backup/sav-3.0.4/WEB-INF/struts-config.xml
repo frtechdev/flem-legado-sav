@@ -1,0 +1,405 @@
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+    <form-beans>
+    
+        <form-bean name="viagemComAgendamentoForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="viagem" type="br.org.flem.sav.negocio.ViagemComAgendamento" />
+            <form-property name="natureza" type="java.lang.String" />
+            <form-property name="tipoDiaria" type="java.lang.String" />
+            <form-property name="diaria" type="java.lang.String" />
+            <form-property name="diariaE" type="java.lang.String" />
+            <form-property name="diariaP" type="java.lang.String" />
+            <form-property name="destino" type="java.lang.String" />
+            <form-property name="descricaoE" type="java.lang.String" />
+            <form-property name="totalDiarias" type="java.lang.String" />
+            <form-property name="qtDiaria" type="java.lang.String" />
+            <form-property name="totalAdiantamento" type="java.lang.String" />
+            <form-property name="valorAdiantamento" type="java.lang.String" />
+            <form-property name="dataSaidaPrevista" type="java.lang.String" />
+            <form-property name="horaSaidaPrevista" type="java.lang.String" />
+            <form-property name="dataRetornoPrevista" type="java.lang.String" />
+            <form-property name="horaRetornoPrevista" type="java.lang.String" />
+            <form-property name="dataSaidaEfetiva" type="java.lang.String" />
+            <form-property name="horaSaidaEfetiva" type="java.lang.String" />
+            <form-property name="dataRetornoEfetiva" type="java.lang.String" />
+            <form-property name="horaRetornoEfetiva" type="java.lang.String" />
+            <form-property name="temReserva" type="java.lang.String" />
+            <form-property name="companhiaId" type="java.lang.String" />
+            <form-property name="codigoReserva" type="java.lang.String" />
+
+            <form-property name="dataLinhaItinerario" type="java.lang.String" />
+            <form-property name="cidadeOrigemId" type="java.lang.String" />
+            <form-property name="cidadeDestinoId" type="java.lang.String" />
+            <form-property name="obsLinhaItinerario" type="java.lang.String" />
+            
+            <form-property name="data" type="java.lang.String[]" />
+            <form-property name="cidadeO" type="java.lang.String[]" />
+            <form-property name="cidadeD" type="java.lang.String[]" />
+            <form-property name="obs" type="java.lang.String[]" />
+            <form-property name="observacao" type="java.lang.String" />
+            
+            <form-property name="dataI" type="java.lang.String[]" />
+            <form-property name="horaI" type="java.lang.String[]" />
+            <form-property name="dataF" type="java.lang.String[]" />
+            <form-property name="horaF" type="java.lang.String[]" />
+            <form-property name="qtDiariaT" type="java.lang.String[]" />
+            <form-property name="valorDiariaT" type="java.lang.String[]" />
+            <form-property name="totalDiariaT" type="java.lang.String[]" />
+            <form-property name="descT" type="java.lang.String[]" />
+
+            <form-property name="dataPagamento" type="java.lang.String" />
+        </form-bean>
+
+        <form-bean name="viagemForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="viagem" type="br.org.flem.sav.negocio.Viagem" />
+            <form-property name="natureza" type="java.lang.String" />
+            <form-property name="tipoDiaria" type="java.lang.String" />
+            <form-property name="diaria" type="java.lang.String" />
+            <form-property name="diariaE" type="java.lang.String" />
+            <form-property name="diariaP" type="java.lang.String" />
+            <form-property name="destino" type="java.lang.String" />
+            <form-property name="descricaoE" type="java.lang.String" />
+            <form-property name="totalDiarias" type="java.lang.String" />
+            <form-property name="qtDiaria" type="java.lang.String" />
+            <form-property name="totalAdiantamento" type="java.lang.String" />
+            <form-property name="valorAdiantamento" type="java.lang.String" />
+            <form-property name="dataSaidaPrevista" type="java.lang.String" />
+            <form-property name="horaSaidaPrevista" type="java.lang.String" />
+            <form-property name="dataRetornoPrevista" type="java.lang.String" />
+            <form-property name="horaRetornoPrevista" type="java.lang.String" />
+            <form-property name="dataSaidaEfetiva" type="java.lang.String" />
+            <form-property name="horaSaidaEfetiva" type="java.lang.String" />
+            <form-property name="dataRetornoEfetiva" type="java.lang.String" />
+            <form-property name="horaRetornoEfetiva" type="java.lang.String" />
+            <form-property name="temReserva" type="java.lang.String" />
+            <form-property name="companhiaId" type="java.lang.String" />
+            <form-property name="codigoReserva" type="java.lang.String" />
+
+            <form-property name="dataLinhaItinerario" type="java.lang.String" />
+            <form-property name="cidadeOrigemId" type="java.lang.String" />
+            <form-property name="cidadeDestinoId" type="java.lang.String" />
+            <form-property name="obsLinhaItinerario" type="java.lang.String" />
+
+            <form-property name="data" type="java.lang.String[]" />
+            <form-property name="cidadeO" type="java.lang.String[]" />
+            <form-property name="cidadeD" type="java.lang.String[]" />
+            <form-property name="obs" type="java.lang.String[]" />
+            <form-property name="observacao" type="java.lang.String" />
+
+            <form-property name="dataI" type="java.lang.String[]" />
+            <form-property name="horaI" type="java.lang.String[]" />
+            <form-property name="dataF" type="java.lang.String[]" />
+            <form-property name="horaF" type="java.lang.String[]" />
+            <form-property name="qtDiariaT" type="java.lang.String[]" />
+            <form-property name="valorDiariaT" type="java.lang.String[]" />
+            <form-property name="totalDiariaT" type="java.lang.String[]" />
+            <form-property name="descT" type="java.lang.String[]" />
+
+            <form-property name="codigoFonteRecurso" type="java.lang.String" />
+            
+            <form-property name="matricula" type="java.lang.String" />
+
+            <form-property name="nomeViajante" type="java.lang.String" />
+
+            <form-property name="dataPagamento" type="java.lang.String" />
+            <form-property name="tipoFiltro" type="java.lang.String"/>
+            <form-property name="tipoFiltroValue" type="java.lang.String"/>
+        </form-bean>
+
+        <form-bean name="prestacaoContasForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="prestacaoConta" type="br.org.flem.sav.negocio.PrestacaoContas" />
+            <form-property name="viagem" type="br.org.flem.sav.negocio.Viagem" />
+            <form-property name="diaria" type="java.lang.String" />
+            <form-property name="diariaP" type="java.lang.String" />
+            <form-property name="diariaE" type="java.lang.String" />
+            <form-property name="totalDiariaOriginal" type="java.lang.String" />
+            <form-property name="descricaoE" type="java.lang.String" />
+            <form-property name="descricaoEOriginal" type="java.lang.String" />
+            <form-property name="destino" type="java.lang.String" />
+            <form-property name="totalDiariasP" type="java.lang.String" />
+            <form-property name="totalDiarias" type="java.lang.String" />
+            <form-property name="qtdDiariasP" type="java.lang.String" />
+            <form-property name="qtDiaria" type="java.lang.String" />
+            <form-property name="totalAdiantamentoP" type="java.lang.String" />
+            <form-property name="totalAdiantamento" type="java.lang.String" />
+            <form-property name="valorAdiantamentoP" type="java.lang.String" />
+            <form-property name="valorAdiantamento" type="java.lang.String" />
+            <form-property name="dataSaidaPrevista" type="java.lang.String" />
+            <form-property name="horaSaidaPrevista" type="java.lang.String" />
+            <form-property name="dataRetornoPrevista" type="java.lang.String" />
+            <form-property name="horaRetornoPrevista" type="java.lang.String" />
+            <form-property name="dataSaidaEfetiva" type="java.lang.String" />
+            <form-property name="horaSaidaEfetiva" type="java.lang.String" />
+            <form-property name="dataRetornoEfetiva" type="java.lang.String" />
+            <form-property name="horaRetornoEfetiva" type="java.lang.String" />
+            
+            <form-property name="tipoDiaria" type="java.lang.String" />
+
+            <form-property name="dataLinhaItinerario" type="java.lang.String" />
+            <form-property name="cidadeOrigemId" type="java.lang.String" />
+            <form-property name="cidadeDestinoId" type="java.lang.String" />
+            <form-property name="obsLinhaItinerario" type="java.lang.String" />
+
+            <form-property name="data" type="java.lang.String[]" />
+            <form-property name="cidadeO" type="java.lang.String[]" />
+            <form-property name="cidadeD" type="java.lang.String[]" />
+            <form-property name="obs" type="java.lang.String[]" />
+            <form-property name="observacao" type="java.lang.String" />
+
+            <form-property name="dataI" type="java.lang.String[]" />
+            <form-property name="horaI" type="java.lang.String[]" />
+            <form-property name="dataF" type="java.lang.String[]" />
+            <form-property name="horaF" type="java.lang.String[]" />
+            <form-property name="qtDiariaT" type="java.lang.String[]" />
+            <form-property name="valorDiariaT" type="java.lang.String[]" />
+            <form-property name="totalDiariaT" type="java.lang.String[]" />
+            <form-property name="descT" type="java.lang.String[]" />
+            
+            <form-property name="qtdeDoc" type="java.lang.String" />
+            <form-property name="totalR" type="java.lang.String" />
+            <form-property name="tot2" type="java.lang.String" />
+            <form-property name="vd2" type="java.lang.String" />
+
+            <form-property name="idGasto" type="java.lang.String[]" />
+            <form-property name="vlrGasto" type="java.lang.String[]" />
+
+            <form-property name="dataPagamento" type="java.lang.String" />
+        </form-bean>
+        
+        <form-bean name="companhiaForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="companhia" type="br.org.flem.sav.negocio.Companhia" />
+        </form-bean>
+
+        <form-bean name="cargoDiariaForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="cargoDiaria" type="br.org.flem.sav.negocio.CargoDiaria" />
+            <form-property name="id" type="java.lang.String" />
+        </form-bean>
+
+        <form-bean name="liberacaoViagemForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="liberacaoViagem" type="br.org.flem.sav.negocio.LiberacaoViagem" />
+            <form-property name="tipoLiberacao" type="java.lang.String" />
+            <form-property name="tipoPessoa" type="java.lang.String" />
+        </form-bean>
+
+        <form-bean name="contaCorrenteViagemForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="contaCorrenteViagem" type="br.org.flem.sav.negocio.ContaCorrenteViagem" />
+            <form-property name="banco" type="br.org.flem.sav.negocio.util.Banco" />
+            <form-property name="bancoNome" type="java.lang.String" />
+            <form-property name="busca" type="java.lang.String" />
+        </form-bean>
+
+        <form-bean name="bancoForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="banco" type="br.org.flem.sav.negocio.util.Banco" />
+        </form-bean>
+
+        <form-bean name="tipoGastoForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="tipoGasto" type="br.org.flem.sav.negocio.TipoGasto" />
+        </form-bean>
+
+        <form-bean name="cidadeForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="cidade" type="br.org.flem.sav.negocio.util.Cidade" />
+        </form-bean>
+        
+
+
+        <form-bean name="relatorioForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="codigoCentroCustoInicial" type="java.lang.String" />
+            <form-property name="codigoCentroCustoFinal" type="java.lang.String" />
+            <form-property name="viagem" type="br.org.flem.sav.negocio.Viagem" />
+            <form-property name="statusPrestacaoContas" type="java.lang.String" />
+            <form-property name="statusViagem" type="java.lang.String" />
+            <form-property name="dataInicial" type="java.lang.String" />
+            <form-property name="dataFinal" type="java.lang.String" />
+            <form-property name="mesAno" type="java.lang.String" />
+            <form-property name="ano" type="java.lang.String" />
+            <form-property name="filter" type="java.lang.String" />
+            <form-property name="situacaoFuncionario" type="java.lang.Integer" />
+            <form-property name="tiposGastos" type="java.lang.String[]" />
+        </form-bean>
+        
+        <form-bean name="percentualDiariaForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="percentualDiaria" type="br.org.flem.sav.negocio.PercentualDiaria" />
+            <form-property name="minQuebraDiariasUm" type="java.lang.String" />
+            <form-property name="maxQuebraDiariasUm" type="java.lang.String" />
+            <form-property name="quebraDiariasUm" type="java.lang.String" />
+            <form-property name="minQuebraDiariasDois" type="java.lang.String" />
+            <form-property name="maxQuebraDiariasDois" type="java.lang.String" />
+            <form-property name="quebraDiariasDois" type="java.lang.String" />
+            <!--form-property name="lotacao" type="java.lang.String" /-->
+        </form-bean>
+        
+    </form-beans>
+    
+    <global-exceptions>
+    
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="home"  path="/Home.do"/>
+        <forward name="redirect"  path="/redirect.jsp"/>
+    </global-forwards>
+
+    <action-mappings>
+        
+        <action path="/Home" forward="/index.jsp"/>
+        
+        <action path="/ViagemComAgendamento" name="viagemComAgendamentoForm" type="br.org.flem.sav.action.ViagemComAgendamentoAction" parameter="metodo" scope="request" validate="true">
+            <forward name="novo" path="/pages/agendamento/novo.jsp" />
+            <forward name="editar" path="/pages/agendamento/editar.jsp" />
+            <forward name="lista" path="/pages/agendamento/lista.jsp" />
+            <forward name="redirect" path="/ViagemComAgendamento.do" redirect="true" />
+
+            <forward name="recebimentoAgenLista" path="/pages/recebimentoagendamento/lista.jsp" />
+            <forward name="recebimentoAgenEditar" path="/pages/recebimentoagendamento/editar.jsp" />
+            <forward name="recebimentoAgenRedirect" path="/ViagemComAgendamento.do?metodo=listaRecebimento" redirect="true" />
+        </action>
+
+        <action path="/Viagem" name="viagemForm" type="br.org.flem.sav.action.ViagemAction" parameter="metodo" scope="request" validate="true">
+            <forward name="novo" path="/pages/viagem/novo.jsp" />
+            <forward name="lista" path="/pages/viagem/lista.jsp" />
+            <forward name="editar" path="/pages/viagem/editar.jsp" />
+            <forward name="editarDataPagamento" path="/pages/viagem/editarDataPagamento.jsp" />
+            <forward name="relatorioHtml" path="/pages/viagem/relatorio.jsp" />
+            <forward name="redirect" path="/Viagem.do" redirect="true" />
+
+            <forward name="recebimentoLista" path="/pages/recebimentoviagem/lista.jsp" />
+            <forward name="recebimentoEditar" path="/pages/recebimentoviagem/editar.jsp" />
+            <forward name="recebimentoRedirect" path="/Viagem.do?metodo=listaRecebimento" redirect="true" />
+
+        </action>
+
+        <action path="/PrestacaoContas" name="prestacaoContasForm" type="br.org.flem.sav.action.PrestacaoContasAction" parameter="metodo" scope="request" validate="true">
+            <forward name="novo" path="/pages/prestarconta/novo.jsp" />
+            <forward name="editar" path="/pages/prestarconta/editar.jsp" />
+            <forward name="editarDataPagamento" path="/pages/prestarconta/editarDataPagamento.jsp" />
+            <forward name="relatorioHtml" path="/pages/prestarconta/relatorio.jsp" />
+            <forward name="redirect" path="/Viagem.do" redirect="true" />
+
+            <forward name="recebimentoLista" path="/pages/recebimentoprestacao/lista.jsp" />
+            <forward name="recebimentoEditar" path="/pages/recebimentoprestacao/editar.jsp" />
+            <forward name="recebimentoRedirect" path="/PrestacaoContas.do?metodo=listaRecebimento" redirect="true" />
+        </action>
+        
+        <action path="/Companhia" name="companhiaForm" type="br.org.flem.sav.action.CompanhiaAction" parameter="metodo" scope="request" validate="true">
+            <forward name="novo" path="/pages/companhia/novo.jsp" />
+            <forward name="lista" path="/pages/companhia/lista.jsp" />
+            <forward name="editar" path="/pages/companhia/editar.jsp" />
+            <forward name="redirect" path="/Companhia.do" redirect="true" />
+        </action>
+
+        <action path="/CargoDiaria" name="cargoDiariaForm" type="br.org.flem.sav.action.CargoDiariaAction" parameter="metodo" scope="request" validate="true">
+            <forward name="novo" path="/pages/cargodiaria/novo.jsp" />
+            <forward name="lista" path="/pages/cargodiaria/lista.jsp" />
+            <forward name="editar" path="/pages/cargodiaria/editar.jsp" />
+            <forward name="redirect" path="/CargoDiaria.do" redirect="true" />
+        </action>
+
+        <action path="/LiberacaoViagem" name="liberacaoViagemForm" type="br.org.flem.sav.action.LiberacaoViagemAction" parameter="metodo" scope="request" validate="true">
+            <forward name="novo" path="/pages/liberacaoviagem/novo.jsp" />
+            <forward name="lista" path="/pages/liberacaoviagem/lista.jsp" />
+            <forward name="novoRetroativo" path="/pages/liberacaoviagem/novoRetroativo.jsp" />
+            <forward name="listaRetroativo" path="/pages/liberacaoviagem/listaRetroativo.jsp" />
+            <forward name="novoLimite50" path="/pages/liberacaoviagem/novoLimite50.jsp" />
+            <forward name="listaLimite50" path="/pages/liberacaoviagem/listaLimite50.jsp" />
+            <forward name="redirect" path="/LiberacaoViagem.do" redirect="true" />
+            <forward name="redirectRetroativo" path="/LiberacaoViagem.do?metodo=listaRetroativo" redirect="true" />
+            <forward name="redirectLimite50" path="/LiberacaoViagem.do?metodo=listaLimite50" redirect="true" />
+        </action>
+
+        <action name="contaCorrenteViagemForm" parameter="metodo" path="/ContaCorrenteViagem" type="br.org.flem.sav.action.ContaCorrenteViagemAction" scope="request" validate="true">
+            <forward name="novo" path="/pages/contaCorrenteViagem/novo.jsp"/>
+            <forward name="lista" path="/pages/contaCorrenteViagem/lista.jsp"/>
+            <forward name="editar" path="/pages/contaCorrenteViagem/editar.jsp"/>
+            <forward name="redirect" path="/ContaCorrenteViagem.do" redirect="true"/>
+        </action>
+
+        <action name="viagemForm" parameter="metodo" path="/ViagemConsultor" type="br.org.flem.sav.action.ViagemConsultorAction" scope="request" validate="true">
+            <forward name="novo" path="/pages/viagemConsultor/novo.jsp" />
+            <forward name="lista" path="/pages/viagemConsultor/lista.jsp" />
+            <forward name="editar" path="/pages/viagemConsultor/editar.jsp" />
+            <forward name="relatorioHtml" path="/pages/viagemConsultor/relatorio.jsp" />
+            <forward name="redirect" path="/ViagemConsultor.do" redirect="true" />
+        </action>
+
+        <action name="viagemForm"  parameter="metodo" path="/ConsultaViagem" type="br.org.flem.sav.action.ConsultaViagemAction" scope="request" validate="true">
+            <forward name="lista" path="/pages/consulta/lista.jsp"/>
+            <forward name="redirect" path="/ConsultaViagem.do" redirect="true"/>
+        </action>
+        
+        <action name="viagemForm"  parameter="metodo" path="/ConsultaViagem" type="br.org.flem.sav.action.ConsultaViagemAction" scope="request" validate="true">
+            <forward name="lista" path="/pages/consulta/lista.jsp"/>
+            <forward name="redirect" path="/ConsultaViagem.do" redirect="true"/>
+        </action>
+        
+        <action name="viagemForm" parameter="metodo" path="/ConsultaDiaria" type="br.org.flem.sav.action.ConsultaDiariaAction" scope="request" validate="true">
+            <forward name="diaria" path="/pages/consulta/diaria.jsp"/>
+        </action>
+
+        <action name="bancoForm" parameter="metodo" path="/Banco" type="br.org.flem.sav.action.BancoAction" scope="request" validate="true">
+            <forward name="novo" path="/pages/banco/novo.jsp"/>
+            <forward name="lista" path="/pages/banco/lista.jsp"/>
+            <forward name="editar" path="/pages/banco/editar.jsp"/>
+            <forward name="redirect" path="/Banco.do" redirect="true"/>
+        </action>
+
+        <action name="tipoGastoForm" parameter="metodo" path="/TipoGasto" type="br.org.flem.sav.action.TipoGastoAction" scope="request" validate="true">
+            <forward name="novo" path="/pages/tipoGasto/novo.jsp"/>
+            <forward name="lista" path="/pages/tipoGasto/lista.jsp"/>
+            <forward name="editar" path="/pages/tipoGasto/editar.jsp"/>
+            <forward name="redirect" path="/TipoGasto.do" redirect="true"/>
+        </action>
+
+        <action name="cidadeForm" parameter="metodo" path="/Cidade" type="br.org.flem.sav.action.CidadeAction" scope="request" validate="true">
+            <forward name="novo" path="/pages/cidade/novo.jsp"/>
+            <forward name="lista" path="/pages/cidade/lista.jsp"/>
+            <forward name="editar" path="/pages/cidade/editar.jsp"/>
+            <forward name="redirect" path="/Cidade.do" redirect="true"/>
+        </action>
+        
+        <action path="/Relatorio" name="relatorioForm" parameter="metodo" type="br.org.flem.sav.action.RelatorioAction" scope="request" validate="true">
+            <forward name="totalPrestacaoContasEmAberto" path="/relatorio/filtro/totalPrestacaoContasEmAberto.jsp"/>
+            <forward name="totalSDVStatus" path="/relatorio/filtro/totalSDVStatus.jsp"/>
+            <forward name="percentualFuncionarioDiaria" path="/relatorio/filtro/funcionarioLimiteDiaria.jsp"/>
+            <forward name="percentualFuncionarioDiariaDetalhada" path="/relatorio/filtro/funcionarioLimiteDiariaDetalhada.jsp"/>
+            <forward name="relatorioConferenciaViagens" path="/relatorio/filtro/relatorioConferenciaViagens.jsp"/>
+            <forward name="relatorioGastos" path="/relatorio/filtro/relatorioGastos.jsp"/>
+            <forward name="relatorioPlanilhaGastos" path="/relatorio/filtro/planilhaGastos.jsp"/>
+            <forward name="relatorioAnalíticoPrestacaoPendente" path="/relatorio/filtro/relFinPrestacaoPendente.jsp"/>
+            <!--forward name="relatorioDiariaPorSalarioColaboradores" path="/relatorio/filtro/relDiariaPorSalario.jsp"/-->
+            <forward name="lista" path="/relatorio/filtro/relDiariaPorSalario.jsp"/>
+        </action>
+        
+        <action path="/FuncionariosInativos" name="viagemForm" type="br.org.flem.sav.action.FuncionariosInativosAction" parameter="metodo" scope="request" validate="true">
+            <forward name="lista" path="/pages/funcionariosInativos/lista.jsp" />
+        </action>
+        
+        <action path="/PercentualDiaria" name="percentualDiariaForm" type="br.org.flem.sav.action.PercentualDiariaAction" parameter="metodo" scope="request" validate="true">
+            <forward name="lista" path="/pages/percentualDiaria/lista.jsp" />
+            <forward name="novo" path="/pages/percentualDiaria/novo.jsp" />
+            <forward name="editar" path="/pages/percentualDiaria/editar.jsp" />
+            <forward name="redirect" path="/PercentualDiaria.do" redirect="true"/>
+        </action>
+        
+    </action-mappings>
+    
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+    <message-resources parameter="applicationresource"/>
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+    
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+  
+</struts-config>

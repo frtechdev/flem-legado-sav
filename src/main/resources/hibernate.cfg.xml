@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE hibernate-configuration
+PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+
+<hibernate-configuration>
+    
+    <session-factory name="session-control">
+     
+        <!-- BD DE DESENVOLVIMENTO -->
+        <property name="hibernate.connection.url">jdbc:jtds:sqlserver://servidorbd;databaseName=BDSAV</property>
+        <property name="hibernate.connection.username">user_sav</property>
+        <property name="hibernate.connection.password">d51p3qg</property>
+        <!--<property name="hibernate.connection.url">jdbc:jtds:sqlserver://trancoso;databaseName=BDSAV</property>
+        <property name="hibernate.connection.username">desenvolvimento</property>
+        <property name="hibernate.connection.password">ntoflem</property>-->
+
+        <!-- BD DE PRODUCAO -->
+        <!--property name="hibernate.connection.url">jdbc:jtds:sqlserver://servidorbd;databaseName=BDSAV</property>
+        <property name="hibernate.connection.username">user_sav</property>
+        <property name="hibernate.connection.password">d51p3qg</property-->
+
+        <property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.transaction.factory_class">
+            org.hibernate.transaction.JDBCTransactionFactory
+        </property>
+        <mapping class="br.org.flem.sav.negocio.CargoDiaria" />
+        <mapping class="br.org.flem.sav.negocio.Companhia" />
+        <mapping class="br.org.flem.sav.negocio.ContaCorrenteViagem" />
+        <mapping class="br.org.flem.sav.negocio.ItemItinerario" />                             
+        <mapping class="br.org.flem.sav.negocio.Itinerario" />  
+        <mapping class="br.org.flem.sav.negocio.LiberacaoViagem" />
+        <mapping class="br.org.flem.sav.negocio.PrestacaoContas" />  
+        <mapping class="br.org.flem.sav.negocio.Reserva" />          
+        <mapping class="br.org.flem.sav.negocio.Trecho" />
+        <mapping class="br.org.flem.sav.negocio.TrechoEfetivo" />
+        <mapping class="br.org.flem.sav.negocio.Viagem" />          
+        <mapping class="br.org.flem.sav.negocio.ViagemComAgendamento" />
+        <mapping class="br.org.flem.sav.negocio.Gasto" />
+        <mapping class="br.org.flem.sav.negocio.TipoGasto" />
+        <mapping class="br.org.flem.sav.negocio.PercentualDiaria" />
+        <mapping class="br.org.flem.sav.negocio.util.Banco" />
+        <mapping class="br.org.flem.sav.negocio.util.Cidade" />
+        <mapping class="br.org.flem.sav.negocio.util.Continente" />
+        <mapping class="br.org.flem.sav.negocio.util.Estado" />       
+        <mapping class="br.org.flem.sav.negocio.util.Idioma"/>
+        <mapping class="br.org.flem.sav.negocio.util.Pais" />
+    </session-factory>
+    
+</hibernate-configuration>

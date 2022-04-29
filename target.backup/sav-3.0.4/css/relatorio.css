@@ -1,0 +1,76 @@
+body{ 
+    margin: 0px;
+    color: #000000;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+.relatorio{
+    width: 800px;
+    margin: 0px auto;
+}
+.relatorio #grupo{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.relatorio input{
+    border: none;
+    width: 100px;
+    text-align: center;
+    font-size: 11px;
+}
+.relatorio #input{
+    border: none;
+    width: 100px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+.relatorio #cabecalho01{
+    font-size: 16px;
+    font-weight: bold;
+    border-top: solid 1px #000000;
+    border-bottom: solid 1px #000000;
+}
+.relatorio #cabecalho02{
+    font-size: 16px;
+    border: solid 1px #000000;
+}
+.relatorio #titulo{
+    font-size: 14px;
+    font-weight: bold;
+    border: solid 1px #000000;
+}
+.relatorio #campo{
+    font-size: 10px;
+    line-height: 15px;
+    border-left: solid 1px #000000;
+    border-top: solid 1px #000000;
+    border-right: solid 1px #000000;
+}
+.relatorio #campo2{
+    font-size: 10px;
+    line-height: 15px;
+    border: solid 1px #000000;
+}
+.relatorio #var{
+    font-size: 11px;
+    font-weight: bold;
+    border-left: solid 1px #000000;
+    border-bottom: solid 1px #000000;
+    border-right: solid 1px #000000;
+    line-height: 17px;
+}
+.relatorio #var2{
+    font-size: 11px;
+    border-left: solid 1px #000000;
+    border-bottom: solid 1px #000000;
+    border-right: solid 1px #000000;
+    line-height: 17px;
+}
+.relatorio #var3{
+    font-size: 11px;
+    border-left: solid 1px #000000;
+    border-bottom: solid 1px #000000;
+    border-right: solid 1px #000000;
+    line-height: 17px;
+    padding-top: 5px;
+}

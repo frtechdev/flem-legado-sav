@@ -1,0 +1,263 @@
+body{ 
+    font:76% Verdana,Tahoma,Arial,sans-serif;
+    /*background:#ffffff url(../img/background-800px.gif) top center repeat-y;*/
+    color:#404040;
+    line-height:1.2em;
+    margin:0 auto;
+    padding:0;
+    width:100%;
+}
+
+a{
+    text-decoration:none;
+    font-size:0.9em;
+    color:#17518C;
+    font-weight:bold;
+}
+
+a:hover{
+    text-decoration: underline;
+    color:#D2D9E3;
+}
+a img{border:0;}
+p{margin:0 0 18px 10px;}
+ul,ol,dl{font-size:0.9em; margin:2px 0 16px 35px;}
+ul ul,ol ol{margin:4px 0 4px 35px;}
+
+h1{
+    font-size:4.2em;
+    letter-spacing:-5px;
+    margin:0 0 30px 25px;
+    color:#13518C;
+}
+
+h1 a{text-transform:none; color:#19528C;}
+
+h2{
+    font-size:1.4em;
+    border-bottom:4px solid #dadada;
+    padding:0 2px 2px 5px;
+    margin:0 0 10px 0;
+    color:#19528C;
+    letter-spacing:-1px;
+}
+
+h3{
+    font-family: Verdana, Geneva;
+    font-size:0.9em;
+    color:#19528C;
+    border-bottom:1px solid #dadada;
+
+}
+
+blockquote{
+    font-size:0.9em;
+    border:1px solid #dadada;
+    margin:20px 10px;
+    padding:8px;
+}
+
+#wrap{
+    color:#404040;
+    width:100%;
+    margin:auto;
+    padding:0;
+    text-align:center;
+}
+
+#header{
+    margin:0;
+    text-align:left;
+    width:100%;
+    height:95px;
+}
+
+#toplinks{
+    text-align:right; 
+    padding:5px 2px 2px 3px;
+}
+
+#slogan{
+    font-size:1.5em;
+    color:#808080;
+    font-weight:bold;
+    letter-spacing:-1px;
+    margin:15px 0px 20px 35px;
+    line-height:1.2em;
+}
+
+/* sidebar */
+#sidebar{
+    float:left;
+    width:20%;
+    margin:0 0 5px 0;
+    padding:1px 0 0 0;
+    text-align:left;
+}
+
+#sidebar ul{
+    list-style:none;
+    font-size:0.9em;
+    margin:0;
+    padding:0 0 15px 10px;
+}
+
+#sidebar li{
+    list-style:none;
+    margin:0 0 4px 0;
+    padding:0;
+}
+
+#sidebar li a{
+    font-size:1.2em;
+    font-weight:bold;
+    padding:2px;
+}
+
+#sidebar ul ul{
+    margin:4px 0 3px 15px;
+    line-height:1.2em;
+    padding:0;
+}
+
+#sidebar ul ul li a{font-weight:normal;}
+#sidebar h2{margin:3px 0px 8px 0px;}
+
+/* Content variations */
+#content{
+    line-height:1.5em;
+    width:77%;
+    float:left;
+    text-align:left;
+    margin:0;
+    margin-left:2%;
+    padding:0;
+}
+
+/* formularios */
+
+#content table {
+    font-size:10pt;
+}
+
+#content form{
+    font-size: 10pt;
+}
+
+
+
+#content input, textarea, select{
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    font-size: 12px;
+    color: #252500;
+}
+
+#content span{
+    color: #999;
+    font-size: 12px;
+}
+
+#content .botao{
+    font-size:10px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    color:white;
+    background:#19528C;
+    border:0px;
+    width:80px;
+    height:19px;
+    margin: 0px 0px 0px 0px;
+}
+
+#content .botaoDesabilitado{
+    font-size:10px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    color:white;
+    background:#CCCCCC;
+    border:0px;
+    width:80px;
+    height:19px;
+    margin: 0px 0px 0px 0px;
+}
+
+/* formularios - fim */
+
+
+
+#contentalt{
+    line-height:1.5em;
+    width:545px;
+    float:left;
+    text-align:left;
+    padding:0;
+    margin-right:20px;
+}
+
+#content h3, #contentalt h3{margin:10px 0 8px;}
+
+/* Footer */
+#footer{
+    clear:both;
+    text-align:right;
+    color:#808080;
+    font-size:0.9em;
+    border-top:4px solid #dadada;
+    margin:0 auto;
+    padding:8px 0;
+    line-height:1.6em;
+}
+
+#footer p{margin:0; padding:0;}
+#footer a{color:#808080;}
+
+/* Various classes */
+.box{
+    color:#ffffff;
+    font-size:0.9em;
+    background-color:#13518C;
+    border:1px solid #c8c8c8;
+    line-height:1.3em;
+    padding:5px 5px 5px 8px;
+}
+
+.box a{color:#f0f0f0;}
+.left{float:left; margin:0 15px 4px 0;}
+.right{float:right; margin:0 0 4px 15px;}
+.textright{text-align:right;}
+.readmore{text-align:right; margin:-10px 10px 12px 0;}
+
+.center{text-align:center;}
+.blue{color:#4088b8;}
+.big{font-size:1.3em;}
+.small{font-size:0.8em;}
+.bold{font-weight:bold;}
+
+.clear{clear:both;}
+.hide{display:none;}
+.fade{color:#c8c8c8;}
+.gray{color:#808080;}
+
+
+
+.photo{
+    border:1px solid #bababa;
+    padding:2px;
+    background-color:#ffffff;
+    margin:6px 18px 2px 5px;
+}
+
+.tituloFCM_false{
+    color:#CCCCCC;
+    font-size:10px;
+    margin-bottom:15px;
+}
+
+.tituloFCM_true{
+    color:#FF0000;
+    font-size:12px;
+    margin-bottom:15px;
+}

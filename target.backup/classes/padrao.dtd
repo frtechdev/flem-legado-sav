@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary indentification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/padrao.dtd
+
+--><!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE grupo SYSTEM "padrao.dtd">
+
+    <grupo>
+    ...
+    </grupo>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT grupo (menu)*>
+<!ATTLIST grupo
+    nome CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT menu (item)*>
+<!ATTLIST menu
+    nome CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT item EMPTY>
+<!ATTLIST item
+    perfil CDATA #IMPLIED
+    href CDATA #IMPLIED
+    nome CDATA #IMPLIED
+  >
